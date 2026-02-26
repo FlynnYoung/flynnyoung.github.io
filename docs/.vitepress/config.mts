@@ -50,13 +50,13 @@ export default defineConfig({
       {
         text: '编程笔记',
         items: [
-          {text: '后端', link: '#'},
+          {text: '后端', link: ''},
           {text: 'php', link: '/programming/php/'},
           {text: 'python', link: '/programming/python/'},
           {text: 'golang', link: '/programming/golang/'},
           {text: 'nodejs', link: '/programming/nodejs/'},
           // -------分割线 -------
-          {text: '前端', link: '#'},
+          {text: '前端', link: ''},
           {text: 'vue', link: '/programming/vue/'},
           {text: 'js', link: '/programming/js/'},
           {text: 'html', link: '/programming/html/'},
