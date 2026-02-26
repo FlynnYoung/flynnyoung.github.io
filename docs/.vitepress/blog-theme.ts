@@ -21,10 +21,11 @@ const blogTheme = getThemeConfig({
     type: 'giscus',
     options: {
       repo: 'FlynnYoung/flynnyoung.github.io',
-      repoId: 'R_kgDORWPljg',
+      repoId: 'R_kgDORZhYeg',
       category: 'Announcements',
-      categoryId: 'DIC_kwDORWPljs4C3G8D',
+      categoryId: 'DIC_kwDORZhYes4C3QzY',
       inputPosition: 'top',
+      loading: 'lazy',
     },
     mobileMinify: true
   },
