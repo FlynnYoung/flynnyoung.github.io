@@ -50,15 +50,23 @@ export default defineConfig({
       {
         text: '编程笔记',
         items: [
-          {text: '后端', link: ''},
+          {text: '后端', link: '#'},
           {text: 'php', link: '/programming/php/'},
           {text: 'python', link: '/programming/python/'},
+          {text: 'golang', link: '/programming/golang/'},
+          {text: 'nodejs', link: '/programming/nodejs/'},
           // -------分割线 -------
-          {text: '前端', link: ''},
+          {text: '前端', link: '#'},
           {text: 'vue', link: '/programming/vue/'},
-          {text: 'js', link: '/programming/vue/'},
+          {text: 'js', link: '/programming/js/'},
           {text: 'html', link: '/programming/html/'},
           {text: 'css', link: '/programming/css/'},
+          // -------分割线 -------
+          // {text: '原生端', link: '#'},
+          // {text: 'swift', link: '/programming/vue/'},
+          // {text: 'kotlin', link: '/programming/kotlin/'},
+          // {text: 'Android', link: '/programming/android/'},
+          // {text: 'IOS', link: '/programming/ios/'},
         ]
       },
       { text: '自媒体', link: '/we-media/' },
