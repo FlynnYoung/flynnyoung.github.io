@@ -7,7 +7,6 @@ categories:
  - 自媒体
  - 短视频
  - 提示词
-recommend: ['提示词', '漫剧']
 sort: 2
 ---
 
