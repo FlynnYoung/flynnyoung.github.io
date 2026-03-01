@@ -1,8 +1,9 @@
 ---
 description: 详细介绍首页&文章相关的各个配置项
-title: 🔧 主题配置 - 首页&文章
+title: 🔧 主题配置-首页&文章
 readingTime: false
 outline: [2,3]
+sticky: 1
 tags:
  - 配置
  - frontmatter

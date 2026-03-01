@@ -7,4 +7,4 @@ hideSidebar: true
 
 ## 目录
 
-- [🔧 主题配置 - 首页&文章](frontmatter.md)
+- [🔧 主题配置-首页&文章](frontmatter.md)
