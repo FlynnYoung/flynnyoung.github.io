@@ -17,35 +17,57 @@ async function generatePressIndex(options = {}) {
   let totalFilesGenerated = 0;
 
   /**
-   * 提取 Markdown 文件的标题
+   * 提取 Markdown 文件的标题和排序值
    * @param {string} filePath - Markdown 文件路径
-   * @returns {string} 提取的标题
+   * @returns {Object} 包含标题和排序值的对象
    */
-  function extractTitle(filePath) {
+  function extractTitleAndSort(filePath) {
     try {
       const content = fs.readFileSync(filePath, 'utf8');
+      let title = '';
+      let sort = Infinity; // 默认排序值为无限大，排在最后
       
-      // 尝试从 frontmatter 中提取 title
+      // 尝试从 frontmatter 中提取 title 和 sort
       const frontmatterMatch = content.match(/^---[\s\S]*?---/);
       if (frontmatterMatch) {
         const frontmatter = frontmatterMatch[0];
+        
+        // 提取 title
         const titleMatch = frontmatter.match(/title:\s*(.+)/);
         if (titleMatch) {
-          return titleMatch[1].trim();
+          title = titleMatch[1].trim();
+        }
+        
+        // 提取 sort
+        const sortMatch = frontmatter.match(/sort:\s*(\d+)/);
+        if (sortMatch) {
+          sort = parseInt(sortMatch[1], 10);
         }
       }
       
-      // 尝试从 # 标题 中提取
-      const headingMatch = content.match(/^#\s+(.+)$/m);
-      if (headingMatch) {
-        return headingMatch[1].trim();
+      // 如果没有提取到标题，尝试从 # 标题 中提取
+      if (!title) {
+        const headingMatch = content.match(/^#\s+(.+)$/m);
+        if (headingMatch) {
+          title = headingMatch[1].trim();
+        }
       }
       
-      // 使用文件名作为标题
-      return path.basename(filePath, '.md');
+      // 如果仍然没有标题，使用文件名作为标题
+      if (!title) {
+        title = path.basename(filePath, '.md');
+      }
+      
+      return {
+        title,
+        sort
+      };
     } catch (error) {
-      // 出错时使用文件名作为标题
-      return path.basename(filePath, '.md');
+      // 出错时使用文件名作为标题，排序值为无限大
+      return {
+        title: path.basename(filePath, '.md'),
+        sort: Infinity
+      };
     }
   }
 
@@ -64,8 +86,8 @@ async function generatePressIndex(options = {}) {
       const stats = fs.statSync(filePath);
 
       if (stats.isFile() && path.extname(file) === '.md' && file !== 'index.md') {
-        // 提取标题
-        const title = extractTitle(filePath);
+        // 提取标题和排序值
+        const { title, sort } = extractTitleAndSort(filePath);
         
         // 生成相对路径（相对于当前目录）
         const relativePath = path.relative(dir, filePath);
@@ -73,10 +95,14 @@ async function generatePressIndex(options = {}) {
 
         articles.push({
           title,
-          path: linkPath
+          path: linkPath,
+          sort
         });
       }
     });
+
+    // 按 sort 字段升序排序，没有 sort 字段的排在后面
+    articles.sort((a, b) => a.sort - b.sort);
 
     const outputFile = path.join(dir, 'index.md');
     
