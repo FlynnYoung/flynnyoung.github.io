@@ -11,12 +11,15 @@
     "gpindex": "node generate-press-index.js"
   },
   "dependencies": {
-    "@sugarat/theme": "^0.5.14"
+    "@sugarat/theme": "^0.5.14",
+    "vitepress-plugin-51la": "^0.1.1",
+    "vitepress-plugin-rss": "^0.4.2"
   },
   "directories": {
     "doc": "docs"
   },
   "devDependencies": {
+    "node-gyp": "^12.2.0",
     "pagefind": "^1.3.0",
     "sass-embedded": "^1.97.3",
     "typescript": "^5.4.5",

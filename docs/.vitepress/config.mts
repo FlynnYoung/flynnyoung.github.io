@@ -1,18 +1,34 @@
 import { defineConfig } from 'vitepress'
-
+import { RSSOptions, RssPlugin } from 'vitepress-plugin-rss'
+import { La51Plugin } from 'vitepress-plugin-51la'
 // 导入主题的配置
 import { blogTheme } from './blog-theme'
-
+const baseUrl = 'https://blog.flynnyoung.com'
 // 如果使用 GitHub/Gitee Pages 等公共平台部署
 // 通常需要修改 base 路径，通常为“/仓库名/”
 // 如果项目名已经为 name.github.io 域名，则不需要修改！
 // const base = process.env.GITHUB_ACTIONS === 'true'
 //   ? '/vitepress-blog-sugar-template/'
 //   : '/'
-
+const RSS: RSSOptions = {
+  title: 'Flynn\'s Blog',
+  baseUrl,
+  copyright: 'Copyright (c) Created By Flynn Young',
+}
 // Vitepress 默认配置
 // 详见文档：https://vitepress.dev/reference/site-config
 export default defineConfig({
+  vite: {
+    plugins: [
+      // 配置 RSS 插件
+      RssPlugin(RSS),
+      // 配置 51la 插件
+      La51Plugin({
+        id: '3PBnZvPCAEN6PMYo',
+        ck: '3PBnZvPCAEN6PMYo'
+      })
+    ]
+  },
   // 继承博客主题(@sugarat/theme)
   extends: blogTheme,
   // base,

@@ -7,3 +7,5 @@ cache
 docs/.vitepress/.git
 docs/.vitepress/cache
 .vscode
+.pnpm-lock.yaml
+.package-lock.json
